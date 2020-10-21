@@ -1,0 +1,108 @@
+
+
+html{
+  font-size: 12px;
+}
+body {
+  margin: 0;
+  font-family: 'Commissioner';
+color: black;
+height: 100vh;}
+header{
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 0.6rem;
+  background-color: rgb(211, 211, 224);
+  box-shadow: 0px 4px 4px rgb(201, 192, 192);
+  grid-area: header;
+color:rgb(78, 74, 74) ; }
+  footer{
+    background-color:  rgb(201, 192, 192);
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:rgb(78, 74, 74);
+  }
+  .main{
+    grid-area: content;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    &__product{
+      margin: 0.5rem;
+      border: 2px solid  rgb(211, 211, 224);
+      border-radius: 4px;
+      box-shadow: 0px 4px 4px rgb(201, 192, 192);
+      position: relative;
+      &-data{
+        padding-left: 1rem;
+        padding-bottom: 1rem;
+        font-size: 1.2rem;
+      
+      }
+      &-button{
+        background: none;
+        border: 1px solid rgb(78, 74, 74);
+        border-radius: 4px;
+        color:rgb(78, 74, 74);
+     
+        padding:0.3rem;
+        position: relative;
+        z-index:30;
+        
+      }
+      &-mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.473);
+        z-index: 10;
+      }
+    }
+    
+  }
+.main__product img{
+  display: block;
+  margin: 0 auto;
+}
+.grid-container{
+  display:grid;
+    grid-template-areas:
+    "header"
+    "content"
+    "footer";
+    grid-template-rows:7% 1fr 5%;
+    height: 100vh;
+    
+  }
+.navigation{
+ &__menu{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width:30%;
+  background-color: white;
+  z-index: 10;
+&-header{
+  display: flex;
+  justify-content: space-between;
+}}
+&__button{
+  width: 4rem;
+    border: none;
+    padding: 0.5rem;
+margin-right: 0.5rem;
+font-size: 1.5rem;
+color: rgb(78, 74, 74);
+background: none;
+
+  }
+}
+

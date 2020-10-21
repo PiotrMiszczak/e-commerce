@@ -1,0 +1,75 @@
+import React, { useState} from 'react';
+import Bird from '../images.jpg'
+import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {useTransition, animated} from 'react-spring';
+function Main(){
+
+const [hover, setHover] = useState(false)
+
+const transitions = useTransition(hover, null, {
+    from: { opacity:0 },
+    enter: {opacity:1 },
+    leave: {opacity:0},
+    })
+
+const mask = transitions.map(({ item, key, props }) =>
+item && <animated.div key={key} style={props} className="main__product-mask"></animated.div>
+)
+    return(
+        <div className="main">
+        <div onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}} className="main__product">
+            {mask}
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+        <div className="main__product">
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+        <div className="main__product">
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+        <div className="main__product">
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+        <div className="main__product">
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+        <div className="main__product">
+            <img alt='bird' src={Bird}></img>
+            <div className="main__product-data">
+            <p>Birb</p>
+            <p><FontAwesomeIcon icon={faCoins} /> 20$</p>
+            <button className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+            </div>
+        </div>
+    
+        </div>
+    )
+}
+
+export default Main;
