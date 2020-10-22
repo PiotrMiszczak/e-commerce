@@ -1,6 +1,6 @@
 import React from 'react';
 import Hedaer from './components/Header'
-import Main from './components/Main'
+import Main from './views/Main'
 
 function App() {
   return (

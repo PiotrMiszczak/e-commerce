@@ -26,9 +26,14 @@ function Navigation(){
     <FontAwesomeIcon icon={faShoppingCart} />
     </button>
     { transitions.map(({ item, key, props }) =>
-item && <animated.div key={key} style={props} className="navigation__menu"><div className="navigation__menu-header"><h1 style={{'margin-left':'1rem'}}>Navigation</h1> <button className="navigation__button" onClick={()=>setShowMenu(!showMenu)}>
+item && <animated.div key={key} style={props} className="navigation__menu">
+    <div className="navigation__menu-header">
+        <h1 style={{'marginLeft':'1rem'}}>Navigation</h1>
+         <button className="navigation__button" onClick={()=>setShowMenu(!showMenu)}>
  <FontAwesomeIcon icon={faTimes} />
-</button> </div></animated.div>
+</button> 
+</div>
+</animated.div>
 )}
     </div>
     )

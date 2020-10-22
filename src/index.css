@@ -29,15 +29,19 @@ footer {
 
 .main {
   grid-area: content;
-  padding: 1rem;
+  padding: 1rem 4rem 1rem 4rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  grid-template-columns: repeat(auto-fit, minmax(280px, 0.5fr)); }
+  @media (max-width: 720px) {
+    .main {
+      margin: 0 auto; } }
   .main__product {
     margin: 0.5rem;
     border: 2px solid #d3d3e0;
     border-radius: 4px;
     box-shadow: 0px 4px 4px #c9c0c0;
-    position: relative; }
+    position: relative;
+    max-height: 300px; }
     .main__product-data {
       padding-left: 1rem;
       padding-bottom: 1rem;
@@ -76,7 +80,7 @@ footer {
   height: 100vh;
   width: 30%;
   background-color: white;
-  z-index: 10; }
+  z-index: 40; }
   .navigation__menu-header {
     display: flex;
     justify-content: space-between; }
@@ -89,3 +93,22 @@ footer {
   font-size: 1.5rem;
   color: #4e4a4a;
   background: none; }
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 10px solid #4e4a4a;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-left: -50px;
+  margin-top: -50px;
+  border-top: 10px solid white;
+  animation: spin 3s linear infinite; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
