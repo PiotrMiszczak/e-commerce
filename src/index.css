@@ -7,7 +7,7 @@ body {
   color: black;
   height: 100vh; }
 
-header {
+.header {
   font-size: 1rem;
   font-weight: 600;
   display: flex;
@@ -17,6 +17,10 @@ header {
   background-color: #d3d3e0;
   box-shadow: 0px 4px 4px #c9c0c0;
   grid-area: header;
+  color: #4e4a4a; }
+
+.link {
+  text-decoration: none;
   color: #4e4a4a; }
 
 footer {
@@ -52,8 +56,15 @@ footer {
       border-radius: 4px;
       color: #4e4a4a;
       padding: 0.3rem;
+      transition: all 0.2s linear;
+      display: block;
       position: relative;
       z-index: 30; }
+      .main__product-button:hover {
+        cursor: pointer;
+        color: #2fff36;
+        border: 1px solid #63ff2f;
+        transition: all 0.2s linear; }
     .main__product-mask {
       position: absolute;
       top: 0;
@@ -78,7 +89,7 @@ footer {
   top: 0;
   right: 0;
   height: 100vh;
-  width: 30%;
+  width: 200px;
   background-color: white;
   z-index: 40; }
   .navigation__menu-header {
@@ -93,12 +104,14 @@ footer {
   font-size: 1.5rem;
   color: #4e4a4a;
   background: none; }
+  .navigation__button:hover {
+    cursor: pointer; }
 
 .loader {
   position: absolute;
   top: 50%;
   left: 50%;
-  border: 10px solid #4e4a4a;
+  border: 10px solid #4e4d4a;
   border-radius: 50%;
   width: 100px;
   height: 100px;
@@ -112,3 +125,53 @@ footer {
     transform: rotate(0deg); }
   100% {
     transform: rotate(360deg); } }
+
+.rating__input {
+  display: none; }
+
+.product__page {
+  display: grid;
+  padding-left: 1rem;
+  grid-template-columns: 20% 50% 30%;
+  column-gap: 1rem; }
+  @media (max-width: 740px) {
+    .product__page {
+      grid-template-columns: 50% 50%; } }
+  @media (max-width: 500px) {
+    .product__page {
+      display: block; } }
+  .product__page img {
+    margin-top: 1.5rem; }
+
+.product__info {
+  min-width: 120px; }
+  @media (max-width: 740px) {
+    .product__info {
+      grid-column: 1/2; } }
+
+.product__actions {
+  margin-right: 6rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #4e4a4a;
+  border-radius: 4px;
+  max-width: 50%; }
+  .product__actions-button {
+    background: none;
+    border: 1px solid #4e4a4a;
+    border-radius: 4px;
+    color: #4e4a4a;
+    padding: 0.3rem;
+    transition: all 0.2s linear;
+    display: block;
+    margin-top: 1rem;
+    width: 100%; }
+    .product__actions-button:hover {
+      cursor: pointer;
+      color: #2fff36;
+      border: 1px solid #63ff2f;
+      transition: all 0.2s linear; }
+  @media (max-width: 740px) {
+    .product__actions-wrapper {
+      grid-column: 2/3;
+      grid-row: 1/2; } }

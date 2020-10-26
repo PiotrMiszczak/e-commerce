@@ -27,7 +27,7 @@ useEffect(()=>{
     
     ,[])
 const loader = product.loading ? <div className="loader"></div> : null;
-const products = product.data ? product.data.map((product)=>{return <ProductCard key={product.id} price={product.price} name={product.name} image={product.avatar} />}) : null;
+const products = product.data ? product.data.map((product)=>{return <ProductCard id={product.id} key={product.id} price={product.price} name={product.name} image={product.avatar} />}) : null;
 const error = product.error ? <h1>Loading failed, check your internet connection and try again</h1> : null;
     return(
         <div className="main">

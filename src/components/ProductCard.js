@@ -1,8 +1,9 @@
 import React , {useState} from 'react';
-import Bird from '../images.jpg'
+
 import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useTransition, animated} from 'react-spring';
+import {Link} from 'react-router-dom'
 
 function ProductCard(props){
 
@@ -18,7 +19,7 @@ function ProductCard(props){
     )
     return(
         <div onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}} className="main__product">
-        {mask}
+      <Link to={`/products/${props.id}`}>{mask}</Link>
         <img alt='bird' src={props.image}></img>
         <div className="main__product-data">
         <p>{props.name}</p>
