@@ -52,7 +52,7 @@ function Product(){
             <img className="product__page-image" src={product.data.avatar}></img>
             <div className="product__info">
                 <h1>{product.data.name}</h1>
-            <p><StarRating />({product.numOfRew})</p> 
+            <p><StarRating /><StarRating />({product.numOfRew})</p> 
 <p><FontAwesomeIcon icon={faCoins} /> {product.data.price} $</p>
 <p>Description:</p>
 <p>lorem ipsum bla bla bla lorem ipsum bla bla bla lorem ipsum bla bla</p>
