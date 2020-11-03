@@ -5,10 +5,26 @@ import './normalize.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
+import productListReducer from './reducers/productListReducer';
+import thunk from 'redux-thunk';
+
+const initialState = {}
+const reducer = combineReducers({
+    products: productListReducer,
+})
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(thunk)))
+
 
 ReactDOM.render(
   <React.StrictMode>
+    < Provider store={store}>
     <App />
+    </ Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
