@@ -4,21 +4,28 @@ import axios from 'axios'
 import StarRating from '../components/StarRating'
 import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {useSelector, useDispatch} from 'react-redux';
+import { getRequestItem } from '../actions/actions'
 
 
 function Product(){
     const {id} = useParams()
-    const [product, setProduct] = useState({
+    const product = useSelector(state => state.product)
+    const {data, loading, error} = product;
+    const dispatch = useDispatch();
+    /*const [product, setProduct] = useState({
         loading:true,
         data:null,
         error:false,
         numOfRew:0,
         
-    })
+    })*/
 
     const stock = true; // TEMPORARY
     useEffect(()=>{
-        axios.get(`https://5f799e65e402340016f932a1.mockapi.io/commerce/${id}`)
+
+        dispatch(getRequestItem(id))
+        /*axios.get(`https://5f799e65e402340016f932a1.mockapi.io/commerce/${id}`)
         .then(resp => setProduct({
             loading:false,
             data: resp.data,
@@ -31,7 +38,7 @@ function Product(){
         data: null,
         error:true,
         numOfRew:0,
-    }))
+    }))*/
     }
         
         
@@ -40,20 +47,20 @@ function Product(){
         let content = null;
        
        
-        if(product.loading){
+        if(loading){
             content = <div className="loader"></div>
         }
-        if(product.error){
+        if(error){
             content = <h1>ERROR occured, check your internet</h1>
         }
-        if(product.data){
+        if(data){
             content = 
             <div className="product__page">
-            <img className="product__page-image" src={product.data.avatar}></img>
+            <img className="product__page-image" src={data.avatar}></img>
             <div className="product__info">
-                <h1>{product.data.name}</h1>
-            <p><StarRating />({product.numOfRew})</p> 
-<p><FontAwesomeIcon icon={faCoins} /> {product.data.price} $</p>
+                <h1>{data.name}</h1>
+            <p><StarRating /></p> 
+<p><FontAwesomeIcon icon={faCoins} /> {data.price} $</p>
 <p>Description:</p>
 <p>lorem ipsum bla bla bla lorem ipsum bla bla bla lorem ipsum bla bla</p>
             </div>
