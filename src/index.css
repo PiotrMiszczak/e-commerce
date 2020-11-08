@@ -99,11 +99,23 @@ footer {
 .navigation__button {
   width: 4rem;
   border: none;
+  position: relative;
   padding: 0.5rem;
   margin-right: 0.5rem;
   font-size: 1.5rem;
   color: #4e4a4a;
   background: none; }
+  .navigation__button-cartitems {
+    background-color: red;
+    color: white;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 1.1rem;
+    border: 1px solid red;
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    left: 50%; }
   .navigation__button:hover {
     cursor: pointer; }
 
@@ -175,3 +187,21 @@ footer {
     .product__actions-wrapper {
       grid-column: 2/3;
       grid-row: 1/2; } }
+
+.cart {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; }
+  .cart__items {
+    width: 60%; }
+  .cart__item {
+    border-bottom: 1px solid grey;
+    border-collapse: collapse;
+    overflow: auto;
+    padding: 1rem;
+    position: relative; }
+  .cart__actions {
+    margin-right: 3rem;
+    border: 1px solid grey;
+    width: 30%;
+    padding: 1rem; }

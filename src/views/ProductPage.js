@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
-import axios from 'axios'
+import {useParams, Link} from 'react-router-dom'
 import StarRating from '../components/StarRating'
 import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,11 +7,14 @@ import {useSelector, useDispatch} from 'react-redux';
 import { getRequestItem } from '../actions/actions'
 
 
-function Product(){
+function Product(props){
     const {id} = useParams()
+    const [qty, setQty] = useState(1)
     const product = useSelector(state => state.product)
     const {data, loading, error} = product;
     const dispatch = useDispatch();
+    
+    
     /*const [product, setProduct] = useState({
         loading:true,
         data:null,
@@ -20,6 +22,8 @@ function Product(){
         numOfRew:0,
         
     })*/
+
+
 
     const stock = true; // TEMPORARY
     useEffect(()=>{
@@ -66,22 +70,24 @@ function Product(){
             </div>
             <div className="product__actions-wrapper">
             <div className="product__actions">
-           
-        <p>State: {stock ? 'In stock' : 'Out of stock'}</p>
+        
+        <p>State: {data.qty<1 ? 'Out of stock' : 'In stock'}</p>
+        
         <label htmlFor="qty">Quantity:</label>
-        <select style={{'margin-left':'1rem'}} name="qty" id="qty">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
+        
+        <select style={{'margin-left':'1rem'}} name="qty" id="qty" value={qty} onChange={(e)=>setQty(e.target.value)}>
+            {Array(data.qty).fill(null).map((x, index) => {
+                return <option key={index+1} value={index+1}>{index+1}</option>
+            })}
         </select>
-        <button className="product__actions-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+       
+        <Link to={`/cart/${id}?qty=${qty}`}><button disabled={data.qty>0 ? false : true} className="product__actions-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button></Link>
+        
         </div>
         </div>
             </div>
         }
+        
         
         return(
            <div >
