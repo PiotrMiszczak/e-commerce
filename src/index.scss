@@ -246,3 +246,40 @@ margin-right: 3rem;
 
   }
 }
+.form{
+  width:100%;
+  &__wrapper{
+   max-width:40%;
+
+    margin: 0 auto;
+    margin-top:5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5rem;
+    border: 1px solid  rgb(78, 74, 74);
+    border-radius: 4px;
+  
+  }
+  
+}
+
+.form__wrapper label{
+  display:block;
+  
+}
+.form__wrapper button{
+  display:block;
+  margin-bottom: 1rem;
+  
+  width: 100%;
+}
+.form__wrapper input{
+box-sizing: border-box;
+ width: 100%;
+ margin-bottom: 1rem;
+ 
+}
+

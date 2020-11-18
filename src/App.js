@@ -4,6 +4,8 @@ import Hedaer from './components/Header'
 import Main from './views/Main'
 import ProductPage from './views/ProductPage'
 import CartPage from './views/CartPage'
+import SinginPage from './views/SigninPage'
+import RegisterPage from './views/RegisterPage'
 
 
 function App() {
@@ -14,6 +16,12 @@ function App() {
     <Switch>
       <Route exact path='/'>
       <Main />
+    </Route>
+    <Route path='/signin'>
+      <SinginPage />
+    </Route>
+    <Route path='/register'>
+      <RegisterPage />
     </Route>
     <Route path='/products/:id'>
     <ProductPage />

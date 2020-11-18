@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import {getState} from 'react'
+
 export const PRODUCT_LIST_REQEST = 'PRODUCT_LIST_REQEST'
 export const PRODUCT_LIST_SUCCES = 'PRODUCT_LIST_SUCCES'
 export const PRODUCT_LIST_ERROR = 'PRODUCT_LIST_ERROR'
@@ -9,6 +9,9 @@ export const PRODUCT_ITEM_SUCCES = 'PRODUCT_ITEM_SUCCES'
 export const PRODUCT_ITEM_ERROR = 'PRODUCT_ITEM_ERROR'
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
+export const SIGNIN_REQUEST = 'SIGNIN_REQUEST'
+export const SIGNIN_SUCCEED = 'SIGNIN_SUCCEED'
+export const SIGNIN_FAILED = 'SIGNIN_FAILED'
 
 
 
@@ -65,4 +68,34 @@ const removeItem = (id) => (dispatch, getState) => {
 Cookie.set('cartItems', JSON.stringify(cartItems))
 }
 
- export{ getRequest, getRequestItem, addItem, removeItem }
+const signIn = (password, email) => async (dispatch) => {
+    
+    try{
+    dispatch({type:SIGNIN_REQUEST})
+    const userData = await axios.post('/api/users/signin',{password, email})
+    dispatch({type:SIGNIN_SUCCEED, payload:userData.data})
+
+   
+Cookie.set('userData', JSON.stringify(userData))
+}
+catch(err){
+    dispatch({type:SIGNIN_FAILED})
+
+}}
+
+const register = (name, password, email) => async (dispatch) => {
+    
+    try{
+    dispatch({type:SIGNIN_REQUEST})
+    const userData = await axios.post('/api/users/register',{name, password, email})
+    dispatch({type:SIGNIN_SUCCEED, payload:userData.data})
+
+   
+Cookie.set('userData', JSON.stringify(userData))
+}
+catch(err){
+    dispatch({type:SIGNIN_FAILED})
+
+}}
+
+ export{ getRequest, getRequestItem, addItem, removeItem, signIn, register }
