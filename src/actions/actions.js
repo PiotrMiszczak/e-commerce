@@ -7,10 +7,13 @@ export const PRODUCT_LIST_ERROR = 'PRODUCT_LIST_ERROR'
 export const PRODUCT_ITEM_REQEST = 'PRODUCT_ITEM_REQEST'
 export const PRODUCT_ITEM_SUCCES = 'PRODUCT_ITEM_SUCCES'
 export const PRODUCT_ITEM_ERROR = 'PRODUCT_ITEM_ERROR'
+export const PRODUCT_SAVE_ERROR = 'PRODUCT_SAVE_ERROR'
+export const PRODUCT_SAVE_SUCCES = 'PRODUCT_SAVE_SUCCES'
+export const PRODUCT_SAVE_REQEST = 'PRODUCT_SAVE_REQEST'
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const SIGNIN_REQUEST = 'SIGNIN_REQUEST'
-export const SIGNIN_SUCCEED = 'SIGNIN_SUCCEED'
+export const SIGNIN_SUCCES = 'SIGNIN_SUCCEED'
 export const SIGNIN_FAILED = 'SIGNIN_FAILED'
 
 
@@ -52,7 +55,7 @@ const addItem = (id,qty) => async (dispatch, getState)=>{
         }})
 
 const {cart:{cartItems}} = getState()
-Cookie.set('cartItems', JSON.stringify(cartItems))
+Cookie.set('cartItems', JSON.stringify(cartItems)) //  Local storage?
         
     } catch (error) {
         alert('404')
@@ -73,7 +76,7 @@ const signIn = (password, email) => async (dispatch) => {
     try{
     dispatch({type:SIGNIN_REQUEST})
     const userData = await axios.post('/api/users/signin',{password, email})
-    dispatch({type:SIGNIN_SUCCEED, payload:userData.data})
+    dispatch({type:SIGNIN_SUCCES, payload:userData.data})
 
    
 Cookie.set('userData', JSON.stringify(userData))
@@ -88,7 +91,7 @@ const register = (name, password, email) => async (dispatch) => {
     try{
     dispatch({type:SIGNIN_REQUEST})
     const userData = await axios.post('/api/users/register',{name, password, email})
-    dispatch({type:SIGNIN_SUCCEED, payload:userData.data})
+    dispatch({type:SIGNIN_SUCCES, payload:userData.data})
 
    
 Cookie.set('userData', JSON.stringify(userData))
@@ -98,4 +101,16 @@ catch(err){
 
 }}
 
- export{ getRequest, getRequestItem, addItem, removeItem, signIn, register }
+const addProduct = (product) => async (dispatch, getState) =>{
+    try{
+    dispatch({type: PRODUCT_SAVE_REQEST})
+    const {userData:{data}}=getState() // userdata:userdata ????
+    const newProduct = await axios.post('/api/products/', product, {headers:{Authorization:`bearer ${data.token}`}})
+    dispatch({type: PRODUCT_SAVE_SUCCES, payload:newProduct.data})
+    }
+    catch(error){
+        dispatch({type:PRODUCT_SAVE_ERROR, payload:error.message})
+    }
+}
+
+ export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct }

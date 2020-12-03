@@ -6,6 +6,7 @@ import { faCoins, faTimes} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
+
 function CartPage(props){
 const {id} = useParams()
 let params = new URLSearchParams(document.location.search.substring(1));

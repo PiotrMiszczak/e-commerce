@@ -11,11 +11,9 @@ function SignIn(){
     const dispatch = useDispatch()
     const {userData, loading, error} = useSelector(state=>state.userData)
     let history = useHistory();
-    useEffect(()=>{
-        if(userData){
-        
+    useEffect(()=>{    
         history.push('/')}
-    },[userData])
+    ,[userData])
 
     function handleSignin(e){
         e.preventDefault();

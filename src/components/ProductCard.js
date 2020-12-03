@@ -27,7 +27,7 @@ const id = props.id
         <p>{props.name}</p>
         <p><FontAwesomeIcon icon={faCoins} /> {props.price}$</p>
        
-        <button onClick={()=>dispatch(addItem(id, 1))} className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button>
+        <button onClick={()=>dispatch(addItem(id, 1))} className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to cart</button>
         
         </div>
     </div>

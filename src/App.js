@@ -6,6 +6,7 @@ import ProductPage from './views/ProductPage'
 import CartPage from './views/CartPage'
 import SinginPage from './views/SigninPage'
 import RegisterPage from './views/RegisterPage'
+import ProductAddPage from './views/ProductAddPage'
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
     </Route>
     <Route path='/signin'>
       <SinginPage />
+    </Route>
+    <Route exact path='/products'>
+      <ProductAddPage />
     </Route>
     <Route path='/register'>
       <RegisterPage />

@@ -81,7 +81,7 @@ function Product(props){
             })}
         </select>
        
-        <Link to={`/cart/${id}?qty=${qty}`}><button disabled={data.qty>0 ? false : true} className="product__actions-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to chart</button></Link>
+        <Link to={`/cart/${id}?qty=${qty}`}><button disabled={data.qty>0 ? false : true} className="product__actions-button"><FontAwesomeIcon icon={faPlusCircle} /> {data.qty>0 ? 'Add to chart' : 'Out of stock'}</button></Link>
         
         </div>
         </div>
