@@ -5,10 +5,11 @@ import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useTransition, animated} from 'react-spring';
 import {Link} from 'react-router-dom'
+import whisky from '../images/whisky.jpg'
 
 function ProductCard(props){
 const dispatch=useDispatch();
-const id = props.id
+const _id = props._id
     const [hover, setHover] = useState(false)
     const transitions = useTransition(hover, null, {
         from: { opacity:0 },
@@ -21,13 +22,13 @@ const id = props.id
     )
     return(
         <div onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}} className="main__product">
-      <Link to={`/products/${props.id}`}>{mask}</Link>
-        <img alt='bird' src={props.image}></img>
+      <Link to={`/products/${props._id}`}>{mask}</Link>
+        <img alt='bird' className="product__image" src={whisky}></img>
         <div className="main__product-data">
         <p>{props.name}</p>
         <p><FontAwesomeIcon icon={faCoins} /> {props.price}$</p>
        
-        <button onClick={()=>dispatch(addItem(id, 1))} className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to cart</button>
+        <button onClick={()=>dispatch(addItem(_id, 1))} className="main__product-button"><FontAwesomeIcon icon={faPlusCircle} />  Add to cart</button>
         
         </div>
     </div>

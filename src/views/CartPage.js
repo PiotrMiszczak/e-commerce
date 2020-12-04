@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function CartPage(props){
-const {id} = useParams()
+const {_id} = useParams()
 let params = new URLSearchParams(document.location.search.substring(1));
 let qty = parseInt(params.get("qty"), 10);
 const cart = useSelector(state=> state.cart);
@@ -16,8 +16,8 @@ const items = cart.cartItems
 const dispatch = useDispatch();
 
 useEffect(()=>{
-    if(id){
-    dispatch(addItem(id,qty))}
+    if(_id){
+    dispatch(addItem(_id,qty))}
     
 }
     ,[])
@@ -34,14 +34,14 @@ useEffect(()=>{
                 <h2>{item.name}</h2>
                 <label htmlFor="qty">Quantity:</label>
                 
-                <select style={{'margin-left':'1rem'}} name="qty" id="qty" value={item.qty} onChange={(e)=>(dispatch(addItem(item.id, e.target.value)))}>
+                <select style={{'margin-left':'1rem'}} name="qty" id="qty" value={item.qty} onChange={(e)=>(dispatch(addItem(item._id, e.target.value)))}>
             {Array(item.available).fill(null).map((x, index) => {
                 return <option key={index+1} value={index+1}>{index+1}</option>
             })}
            
         </select>
         <p>Total price:<span style={{'visibility':'hidden'}}>iii</span><FontAwesomeIcon icon={faCoins} /> {item.price*item.qty}$</p>
-        <FontAwesomeIcon onClick={()=>dispatch(removeItem(item.id))} style={{'float':'right','position':'absolute', 'top':'50%', 'right':'0', 'color':'red', 'fontSize':'1.5rem'}} icon={faTimes} />
+        <FontAwesomeIcon onClick={()=>dispatch(removeItem(item._id))} style={{'float':'right','position':'absolute', 'top':'50%', 'right':'0', 'color':'red', 'fontSize':'1.5rem'}} icon={faTimes} />
        
         </div>
         

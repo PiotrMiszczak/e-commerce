@@ -27,10 +27,10 @@ function App() {
     <Route path='/register'>
       <RegisterPage />
     </Route>
-    <Route path='/products/:id'>
+    <Route path='/products/:_id'>
     <ProductPage />
     </Route>
-    <Route path='/cart/:id?'>
+    <Route path='/cart/:_id?'>
     <CartPage />
     </Route>
     </Switch>

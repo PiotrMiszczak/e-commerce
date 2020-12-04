@@ -29,10 +29,10 @@ const getRequest = () => async (dispatch) =>{
     }
 }
 
-const getRequestItem = (id) => async (dispatch) =>{
+const getRequestItem = (_id) => async (dispatch) =>{
     try{
     dispatch({type:PRODUCT_ITEM_REQEST})
-    const  resp  = await axios.get(`api/products/${id}`)
+    const  resp  = await axios.get(`api/products/${_id}`)
     dispatch({type:PRODUCT_ITEM_SUCCES, payload:resp.data})
     }
     catch(err){
@@ -40,12 +40,12 @@ const getRequestItem = (id) => async (dispatch) =>{
     }
 }
 
-const addItem = (id,qty) => async (dispatch, getState)=>{
+const addItem = (_id,qty) => async (dispatch, getState)=>{
     try {
-        const  resp  = await axios.get(`api/products/${id}`)
+        const  resp  = await axios.get(`api/products/${_id}`)
 
         dispatch({type:ADD_ITEM_TO_CART, payload:{
-            id: resp.data.id,
+            _id: resp.data._id,
             name:resp.data.name,
             price:resp.data.price,
             avatar: resp.data.avatar,
@@ -64,8 +64,8 @@ Cookie.set('cartItems', JSON.stringify(cartItems)) //  Local storage?
     
 }
 
-const removeItem = (id) => (dispatch, getState) => {
-    dispatch({type:REMOVE_ITEM_FROM_CART, payload:id})
+const removeItem = (_id) => (dispatch, getState) => {
+    dispatch({type:REMOVE_ITEM_FROM_CART, payload:_id})
 
    const {cart:{cartItems}} = getState()
 Cookie.set('cartItems', JSON.stringify(cartItems))

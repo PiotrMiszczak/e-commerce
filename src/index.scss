@@ -59,6 +59,7 @@ color:rgb(78, 74, 74) ; }
       position: relative;
       max-height: 300px;
      
+     
       &-data{
         padding-left: 1rem;
         padding-bottom: 1rem;
@@ -93,6 +94,8 @@ color:rgb(78, 74, 74) ; }
 .main__product img{
   display: block;
   margin: 0 auto;
+  max-width: 50%;
+  margin-top: 5px;
 }
 .grid-container{
   display:grid;

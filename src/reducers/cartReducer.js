@@ -8,7 +8,7 @@ function cartReducer(state = {cartItems:[]}, action){
             let repeat = false;
             const itemToAdd = action.payload;
 state.cartItems.forEach(item => {
-    if (item.id == itemToAdd.id){
+    if (item._id == itemToAdd._id){
         repeat = true;
     }
 })
@@ -20,12 +20,12 @@ if(repeat==false){
 }
 else{
     return(
-        {cartItems: state.cartItems.map(item=> item.id==itemToAdd.id ? itemToAdd : item )}
+        {cartItems: state.cartItems.map(item=> item._id==itemToAdd._id ? itemToAdd : item )}
     )
 }
 case REMOVE_ITEM_FROM_CART:
     return(
-        {cartItems: state.cartItems.filter(item => item.id!=action.payload)}
+        {cartItems: state.cartItems.filter(item => item._id!=action.payload)}
     )
             
            
