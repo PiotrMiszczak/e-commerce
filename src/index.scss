@@ -12,6 +12,7 @@
 
 html{
   font-size: 12px;
+  box-sizing: border-box;
 }
 body {
   margin: 0;
@@ -94,7 +95,8 @@ color:rgb(78, 74, 74) ; }
 .main__product img{
   display: block;
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 170px;
+  max-height: 170px;
   margin-top: 5px;
 }
 .grid-container{
@@ -273,6 +275,12 @@ margin-right: 3rem;
   display:block;
   
 }
+
+.form textarea{
+  width: 100%;
+  min-height: 200px;
+  
+}
 .form__wrapper button{
   display:block;
   margin-bottom: 1rem;
@@ -280,9 +288,53 @@ margin-right: 3rem;
   width: 100%;
 }
 .form__wrapper input{
-box-sizing: border-box;
  width: 100%;
  margin-bottom: 1rem;
  
 }
 
+.admin{
+  &__table{
+  width: 100%;
+  margin: auto;
+}
+&__button{
+  @include button;
+  display: inline;
+  margin-right: 4px;
+  background-color: white;
+  
+    &:hover{
+      cursor: pointer;
+      color: rgb(47, 255, 54);
+      border: 1px solid rgb(99, 255, 47);
+      transition: all 0.2s linear;
+    }
+  
+  &-delete{
+    &:hover{
+      cursor: pointer;
+      color: red;
+      border: 1px solid red;
+      transition: all 0.2s linear;
+    }
+  }
+}}
+.admin__table tbody tr:nth-child(odd){
+background-color: rgb(189, 182, 182);
+}
+.admin__table td,th{
+  padding: 4px;
+  }
+.delete__warning{
+ margin:auto;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 250px;
+  padding:0.5rem;
+  &-buttons{
+    display: flex;
+    justify-content: space-around;
+  }
+
+}

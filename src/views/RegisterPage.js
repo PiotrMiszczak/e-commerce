@@ -11,14 +11,14 @@ function Register(){
     const [email, setEmail] = useState('')
     const [rePassword, setRePassword] = useState('')
     const dispatch = useDispatch()
-    const {userData, loading, error} = useSelector(state=>state.userData)
+    const {userInfo, loading, error} = useSelector(state=>state.userData)
     let history = useHistory();
     let passInvalid = null;
     useEffect(()=>{
-        if(userData){
+        if(userInfo){
         
         history.push('/')}
-    },[userData])
+    },[userInfo])
 
     function handleRegister(e){
         e.preventDefault();

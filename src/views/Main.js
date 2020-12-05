@@ -34,7 +34,7 @@ useEffect(()=>{
     
     ,[])
 const loader = loading ? <div className="loader"></div> : null;
-const productsList = data ? products.data.map((product)=>{return <ProductCard _id={product._id} key={product._id} price={product.price} name={product.name} image={product.avatar} />}) : null;
+const productsList = data ? data.map((product)=>{return <ProductCard _id={product._id} key={product._id} price={product.price} name={product.name} image={product.avatar} />}) : null;
 const errorWarning = error ? <h1>Loading failed, check your internet connection and try again</h1> : null;
     return(
         <div className="main">

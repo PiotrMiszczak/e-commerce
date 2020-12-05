@@ -10,6 +10,9 @@ export const PRODUCT_ITEM_ERROR = 'PRODUCT_ITEM_ERROR'
 export const PRODUCT_SAVE_ERROR = 'PRODUCT_SAVE_ERROR'
 export const PRODUCT_SAVE_SUCCES = 'PRODUCT_SAVE_SUCCES'
 export const PRODUCT_SAVE_REQEST = 'PRODUCT_SAVE_REQEST'
+export const PRODUCT_DELETE_ERROR = 'PRODUCT_DELETE_ERROR'
+export const PRODUCT_DELETE_SUCCES = 'PRODUCT_DELETE_SUCCES'
+export const PRODUCT_DELETE_REQEST = 'PRODUCT_DELETE_REQEST'
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const SIGNIN_REQUEST = 'SIGNIN_REQUEST'
@@ -82,7 +85,7 @@ const signIn = (password, email) => async (dispatch) => {
 Cookie.set('userData', JSON.stringify(userData))
 }
 catch(err){
-    dispatch({type:SIGNIN_FAILED})
+    dispatch({type:SIGNIN_FAILED, payload:err.message})
 
 }}
 
@@ -105,12 +108,30 @@ const addProduct = (product) => async (dispatch, getState) =>{
     try{
     dispatch({type: PRODUCT_SAVE_REQEST})
     const {userData:{data}}=getState() // userdata:userdata ????
+    if(!product._id){
     const newProduct = await axios.post('/api/products/', product, {headers:{Authorization:`bearer ${data.token}`}})
-    dispatch({type: PRODUCT_SAVE_SUCCES, payload:newProduct.data})
+    dispatch({type: PRODUCT_SAVE_SUCCES, payload:newProduct.data})}
+    else{
+        const updatedProduct = await axios.put(`/api/products/${product._id}`, product, {headers:{Authorization:`bearer ${data.token}`}})
+        dispatch({type: PRODUCT_SAVE_SUCCES, payload:updatedProduct.data})
+    }
     }
     catch(error){
         dispatch({type:PRODUCT_SAVE_ERROR, payload:error.message})
     }
 }
 
- export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct }
+
+const deleteProduct = (product) => async (dispatch, getState) =>{
+    try{
+    dispatch({type: PRODUCT_DELETE_REQEST})
+    const {userData:{data}}=getState() // userdata:userdata ????
+    const deletedProduct = await axios.delete(`/api/products/${product._id}`, {headers:{Authorization:`bearer ${data.token}`}})
+    dispatch({type: PRODUCT_DELETE_SUCCES, payload:deletedProduct.data})
+    }
+    catch(error){
+        dispatch({type:PRODUCT_DELETE_ERROR, payload:error.message})
+    }
+}
+
+ export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct}

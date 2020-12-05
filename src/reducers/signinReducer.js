@@ -4,11 +4,11 @@ function signinReducer(state = {}, action){
     switch(action.type){
         case SIGNIN_REQUEST:
         return(
-            {loading: true}
+            {loading: true, error:false}
         )
         case SIGNIN_SUCCES:
         return(
-            {loading:false, userInfo:action.payload}
+            {loading:false,error:false, userInfo:action.payload}
         )
         case SIGNIN_FAILED:
         return(

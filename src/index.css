@@ -1,5 +1,6 @@
 html {
-  font-size: 12px; }
+  font-size: 12px;
+  box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -77,7 +78,8 @@ footer {
 .main__product img {
   display: block;
   margin: 0 auto;
-  max-width: 50%;
+  max-width: 170px;
+  max-height: 170px;
   margin-top: 5px; }
 
 .grid-container {
@@ -226,12 +228,57 @@ footer {
 .form__wrapper label {
   display: block; }
 
+.form textarea {
+  width: 100%;
+  min-height: 200px; }
+
 .form__wrapper button {
   display: block;
   margin-bottom: 1rem;
   width: 100%; }
 
 .form__wrapper input {
-  box-sizing: border-box;
   width: 100%;
   margin-bottom: 1rem; }
+
+.admin__table {
+  width: 100%;
+  margin: auto; }
+
+.admin__button {
+  background: none;
+  border: 1px solid #4e4a4a;
+  border-radius: 4px;
+  color: #4e4a4a;
+  padding: 0.3rem;
+  transition: all 0.2s linear;
+  display: block;
+  display: inline;
+  margin-right: 4px;
+  background-color: white; }
+  .admin__button:hover {
+    cursor: pointer;
+    color: #2fff36;
+    border: 1px solid #63ff2f;
+    transition: all 0.2s linear; }
+  .admin__button-delete:hover {
+    cursor: pointer;
+    color: red;
+    border: 1px solid red;
+    transition: all 0.2s linear; }
+
+.admin__table tbody tr:nth-child(odd) {
+  background-color: #bdb6b6; }
+
+.admin__table td, th {
+  padding: 4px; }
+
+.delete__warning {
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 250px;
+  padding: 0.5rem; }
+  .delete__warning-buttons {
+    display: flex;
+    justify-content: space-around; }
