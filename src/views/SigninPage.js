@@ -8,13 +8,24 @@ function SignIn(){
 
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+    let params = new URLSearchParams(document.location.search);
+    const redirect=params.get('redirect')
     const dispatch = useDispatch()
     const {userInfo, loading, error} = useSelector(state=>state.userData)
     let history = useHistory();
+
+    
     useEffect(()=>{ 
         if(userInfo){
+            if(redirect){
+                history.push(`/${redirect}`)
+            }
+            else{
+                history.push('/')
+
+            }
            
-        history.push('/')}}
+        }}
     ,[userInfo])
 
     function handleSignin(e){
@@ -36,7 +47,7 @@ function SignIn(){
                 
                 <button type="submit">Sign in</button>
                 <h2>New here? Click below:</h2>
-                <Link to={'/register'}>
+                <Link to={redirect ? '/register?redirect=shipping' : '/register'}>
                 <button>Sign up</button>
                 </Link>
 

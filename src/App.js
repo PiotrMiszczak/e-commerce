@@ -7,6 +7,7 @@ import CartPage from './views/CartPage'
 import SinginPage from './views/SigninPage'
 import RegisterPage from './views/RegisterPage'
 import ProductAddPage from './views/ProductAddPage'
+import ShippingPage from './views/ShippingPage'
 
 
 function App() {
@@ -32,6 +33,9 @@ function App() {
     </Route>
     <Route path='/cart/:_id?'>
     <CartPage />
+    </Route>
+    <Route path='/shipping'>
+    <ShippingPage />
     </Route>
     </Switch>
     <footer>Rigths reserved</footer>

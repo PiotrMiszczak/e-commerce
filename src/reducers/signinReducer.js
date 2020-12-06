@@ -4,7 +4,7 @@ function signinReducer(state = {}, action){
     switch(action.type){
         case SIGNIN_REQUEST:
         return(
-            {loading: true, error:false}
+            {loading: true}
         )
         case SIGNIN_SUCCES:
         return(

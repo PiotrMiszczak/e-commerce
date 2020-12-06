@@ -4,16 +4,21 @@ import { useParams } from 'react-router-dom';
 import { addItem, removeItem } from '../actions/actions';
 import { faCoins, faTimes} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {useHistory} from 'react-router-dom'
 
 
 
 function CartPage(props){
 const {_id} = useParams()
-let params = new URLSearchParams(document.location.search.substring(1));
+let params = new URLSearchParams(document.location.search);
 let qty = parseInt(params.get("qty"), 10);
 const cart = useSelector(state=> state.cart);
+const {userInfo} = useSelector(state=>state.userData)
+const {data} = useSelector(state=>state.userData)
 const items = cart.cartItems
 const dispatch = useDispatch();
+const history = useHistory();
+
 
 useEffect(()=>{
     if(_id){
@@ -21,6 +26,16 @@ useEffect(()=>{
     
 }
     ,[])
+
+function handleCheckout(){
+    if(userInfo || data){
+        history.push('/shipping')
+    }
+    else{
+        history.push('/signin?redirect=shipping')
+    }
+
+}
 
     return(
        <div>
@@ -56,7 +71,7 @@ useEffect(()=>{
         <div className="cart__actions">
         <h2>Items: {items.reduce((a,b)=>a+Number(b.qty), 0)}</h2>
         <h2>Price: {items.reduce((a,b)=>a+Number(b.qty)*b.price, 0)}</h2>
-        <button>Go to checkout</button>
+        <button onClick={handleCheckout}>Go to checkout</button>
         </div>
             
         </div>

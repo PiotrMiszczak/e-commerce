@@ -12,14 +12,23 @@ function Register(){
     const [rePassword, setRePassword] = useState('')
     const dispatch = useDispatch()
     const {userInfo, loading, error} = useSelector(state=>state.userData)
+    let params = new URLSearchParams(document.location.search);
+    const redirect=params.get('redirect')
     let history = useHistory();
     let passInvalid = null;
-    useEffect(()=>{
+    
+    useEffect(()=>{ 
         if(userInfo){
-        
-        history.push('/')}
-    },[userInfo])
+            if(redirect){
+                history.push(`/${redirect}`)
+            }
+            else{
+                history.push('/')
 
+            }
+           
+        }}
+    ,[userInfo])
     function handleRegister(e){
         e.preventDefault();
         password!==rePassword ? alert('Password does not match, correct and try again') : dispatch(register(name,password,email))
