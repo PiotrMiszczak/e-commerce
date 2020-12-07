@@ -8,6 +8,8 @@ import SinginPage from './views/SigninPage'
 import RegisterPage from './views/RegisterPage'
 import ProductAddPage from './views/ProductAddPage'
 import ShippingPage from './views/ShippingPage'
+import PaymentPage from './views/PaymentPage'
+import SummaryPage from './views/SummaryPage';
 
 
 function App() {
@@ -36,6 +38,12 @@ function App() {
     </Route>
     <Route path='/shipping'>
     <ShippingPage />
+    </Route>
+    <Route path='/payment'>
+    <PaymentPage />
+    </Route>
+    <Route path='/summary'>
+    <SummaryPage />
     </Route>
     </Switch>
     <footer>Rigths reserved</footer>

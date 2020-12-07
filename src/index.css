@@ -75,7 +75,7 @@ footer {
       background-color: rgba(255, 255, 255, 0.473);
       z-index: 10; }
 
-.main__product img {
+img {
   display: block;
   margin: 0 auto;
   max-width: 170px;
@@ -199,7 +199,7 @@ footer {
   .cart__items {
     width: 60%; }
   .cart__item {
-    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
     border-collapse: collapse;
     overflow: auto;
     padding: 1rem;
@@ -302,3 +302,47 @@ tbody tr:nth-child(odd) {
     color: #bdb6b6; }
     .progress-wrapper p {
       text-align: center; }
+
+.payment__input {
+  display: flex;
+  justify-content: flex-start; }
+
+input[type=radio] {
+  width: 15px;
+  margin-right: 5px; }
+
+.summary {
+  display: flex;
+  justify-content: space-between; }
+  .summary__info {
+    width: 65%;
+    margin-left: 1rem;
+    margin-top: 2rem;
+    flex-shrink: 2; }
+    .summary__info > div {
+      border: 1px solid grey;
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 4px; }
+  .summary__button {
+    margin-top: 1rem;
+    width: 100%;
+    height: 3rem;
+    font-size: 1.5rem;
+    border: 1px solid #8b6a04;
+    border-radius: 4px;
+    background-color: #ffbf00; }
+  .summary__actions {
+    width: 25%;
+    margin: 2rem 1rem 1rem 1rem;
+    border: 1px solid grey;
+    padding: 1rem;
+    border-radius: 4px;
+    flex-shrink: 1; }
+    .summary__actions p {
+      font-size: 16px; }
+    .summary__actions span {
+      font-size: 24px;
+      color: #d62323;
+      display: block; }

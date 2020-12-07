@@ -19,6 +19,7 @@ export const SIGNIN_REQUEST = 'SIGNIN_REQUEST'
 export const SIGNIN_SUCCES = 'SIGNIN_SUCCEED'
 export const SIGNIN_FAILED = 'SIGNIN_FAILED'
 export const CART_SHIPPING = 'CART_SHIPPING'
+export const CART_PAYMENT = 'CART_PAYMENT'
 
 
 
@@ -137,6 +138,10 @@ const deleteProduct = (product) => async (dispatch, getState) =>{
 
 const saveShipping = (data) => async (dispatch) =>{
     dispatch({type: CART_SHIPPING, payload:data})
+    
 }
 
- export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping}
+const savePayment = (data) => async (dispatch) =>{
+    dispatch({type: CART_PAYMENT, payload:data})
+}
+ export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping, savePayment}

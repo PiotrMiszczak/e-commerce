@@ -92,7 +92,7 @@ color:rgb(78, 74, 74) ; }
     }
     
   }
-.main__product img{
+img{
   display: block;
   margin: 0 auto;
   max-width: 170px;
@@ -142,6 +142,7 @@ background: none;
   position: absolute;
   top: 0%;
   left: 50%;
+  
 }
 &:hover{
   cursor: pointer;
@@ -233,11 +234,11 @@ background: none;
 
   &__items{
     width:60%;
-  
+   
   }
   &__item{
    
-    border-bottom:1px solid grey;
+    border-top:1px solid grey;
     border-collapse: collapse;
     overflow: auto;
     padding: 1rem;
@@ -367,3 +368,57 @@ background-color: rgb(189, 182, 182);
     
   }
 }
+
+.payment__input{
+  display: flex;
+  justify-content: flex-start;
+}
+input[type=radio]{
+  width: 15px;
+  margin-right: 5px;
+}
+.summary{
+  display: flex;
+  justify-content: space-between;
+  &__info{
+    width: 65%;
+margin-left:1rem;
+margin-top:2rem;
+flex-shrink: 2;
+
+&>div{
+  border: 1px solid grey;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius:4px;
+}
+}
+&__button{
+  margin-top: 1rem;
+  width: 100%;
+  height: 3rem;
+  font-size: 1.5rem;
+  border: 1px solid rgb(139, 106, 4);
+  border-radius: 4px;
+  background-color: rgb(255, 191, 0);
+}
+&__actions{
+  width: 25%;
+  margin:2rem 1rem 1rem 1rem;
+  border: 1px solid grey;
+  padding: 1rem;
+  border-radius:4px;
+  flex-shrink: 1;
+  & p{
+    font-size: 16px;
+  }
+  & span{
+    font-size: 24px;
+    color: rgb(214, 35, 35);
+    display: block;
+  }
+
+}
+
+  }

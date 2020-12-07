@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {useHistory, Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import {saveShipping} from '../actions/actions'
 import ProgressBar from '../components/ProgressBar'
 
