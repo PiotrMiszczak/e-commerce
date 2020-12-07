@@ -257,7 +257,7 @@ margin-right: 3rem;
    width:30%;
 
     margin: 0 auto;
-    margin-top:5rem;
+    margin-top:1rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
@@ -320,7 +320,7 @@ margin-right: 3rem;
     }
   }
 }}
-.admin__table tbody tr:nth-child(odd){
+tbody tr:nth-child(odd){
 background-color: rgb(189, 182, 182);
 }
 .admin__table td,th{
@@ -337,4 +337,33 @@ background-color: rgb(189, 182, 182);
     justify-content: space-around;
   }
 
+}
+.progress{
+  width:80px;
+    height: 5px;
+    background-color:rgb(189, 182, 182);
+    margin-bottom: 2 runrem;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100% ); /*NOWE*/
+  
+  &-active{
+    background-color:rgb(78, 74, 74);
+    &-text{
+      color:rgb(78, 74, 74) ;
+    }
+  }
+  
+    
+ 
+
+  &-wrapper{
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    justify-content: space-around;
+    color:rgb(189, 182, 182);
+    & p{
+      text-align: center;
+     }
+    
+  }
 }

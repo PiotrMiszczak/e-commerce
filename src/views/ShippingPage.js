@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
 import {saveShipping} from '../actions/actions'
+import ProgressBar from '../components/ProgressBar'
 
 
 function ShippingPage(props){
@@ -22,7 +23,8 @@ function ShippingPage(props){
     }
 
     return(
-        
+        <div>
+        <ProgressBar step1 step2 />
         <div className="form__wrapper">
             <h1>Shipping info</h1>
             <form onSubmit={handleShipping} className="form">
@@ -42,6 +44,7 @@ function ShippingPage(props){
             </form>
 
 
+        </div>
         </div>
         
     

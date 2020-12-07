@@ -215,7 +215,7 @@ footer {
   .form__wrapper {
     width: 30%;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
@@ -267,7 +267,7 @@ footer {
     border: 1px solid red;
     transition: all 0.2s linear; }
 
-.admin__table tbody tr:nth-child(odd) {
+tbody tr:nth-child(odd) {
   background-color: #bdb6b6; }
 
 .admin__table td, th {
@@ -282,3 +282,23 @@ footer {
   .delete__warning-buttons {
     display: flex;
     justify-content: space-around; }
+
+.progress {
+  width: 80px;
+  height: 5px;
+  background-color: #bdb6b6;
+  margin-bottom: 2 runrem;
+  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  /*NOWE*/ }
+  .progress-active {
+    background-color: #4e4a4a; }
+    .progress-active-text {
+      color: #4e4a4a; }
+  .progress-wrapper {
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    justify-content: space-around;
+    color: #bdb6b6; }
+    .progress-wrapper p {
+      text-align: center; }
