@@ -12,6 +12,7 @@ import PaymentPage from './views/PaymentPage'
 import SummaryPage from './views/SummaryPage'
 import OrderPage from './views/OrderPage';
 import MyOrderPage from './views/MyOrdersPage'
+import AllOrdersPage from './views/AllOrdersPage';
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
     </Route>
     <Route path='/myorders'>
     <MyOrderPage />
+    </Route>
+    <Route path='/orders'>
+    <AllOrdersPage />
     </Route>
     </Switch>
     <footer>Rigths reserved</footer>

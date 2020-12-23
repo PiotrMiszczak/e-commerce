@@ -31,11 +31,17 @@ export const ORDER_DETAILS_REQUEST = 'ORDER_DETAILS_REQUEST'
 export const ORDER_PAY_ERROR = 'ORDER_PAY_ERROR'
 export const ORDER_PAY_SUCCES = 'ORDER_PAY_SUCCES'
 export const ORDER_PAY_REQUEST = 'ORDER_PAY_REQUEST'
+export const ORDER_DELIVER_ERROR = 'ORDER_DELIVER_ERROR'
+export const ORDER_DELIVER_SUCCES = 'ORDER_DELIVER_SUCCES'
+export const ORDER_DELIVER_REQUEST = 'ORDER_DELIVER_REQUEST'
 export const ORDER_PAY_RESET = 'ORDER_PAY_RESET'
 export const MYORDERS_ERROR = 'MYORDERS_ERROR'
 export const MYORDERS_REQUEST = 'MYORDERS_REQUEST'
 export const MYORDERS_SUCCES = 'MYORDERS_SUCCES'
 export const SIGN_OUT = 'SIGN_OUT'
+export const LIST_ORDERS_REQUEST = 'LIST_ORDERS_REQUEST'
+export const LIST_ORDERS_SUCCES = 'LIST_ORDERS_SUCCES'
+export const LIST_ORDERS_ERROR = 'LIST_ORDERS_ERROR'
 
 
 const getRequest = () => async (dispatch) =>{
@@ -207,6 +213,19 @@ const payOrder = (_id) => async (dispatch, getState) => {
 
 }
 
+const deliverOrder = (_id) => async (dispatch, getState) => {
+    try{
+        dispatch({type:ORDER_DELIVER_REQUEST})
+        const {userData:{userInfo}}=getState() 
+        const {data} = await axios.put(`api/orders/deliver/${_id}`,{}, {headers:{Authorization:`bearer ${userInfo.token}`}})
+        dispatch({type:ORDER_DELIVER_SUCCES, payload:data})
+    }
+    catch(error){
+        dispatch({type:ORDER_DELIVER_ERROR, payload:error.message})
+    }
+
+}
+
 const getMyOrders = () => async (dispatch, getState) => {
     try{
         dispatch({type:MYORDERS_REQUEST})
@@ -220,4 +239,18 @@ const getMyOrders = () => async (dispatch, getState) => {
 
 }
 
- export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping, savePayment, createOrder, getOrder, payOrder, getMyOrders, signOut}
+const listOrders = () => async (dispatch, getState) => {
+    try{
+        dispatch({type:LIST_ORDERS_REQUEST})
+        const {userData:{userInfo}}=getState() 
+        const {data} = await axios.get(`/api/orders/all`,{headers:{Authorization:`bearer ${userInfo.token}`}})
+        dispatch({type:LIST_ORDERS_SUCCES, payload:data})
+    }
+    catch(error){
+        dispatch({type:LIST_ORDERS_ERROR, payload:error.message})
+    }
+
+}
+
+ export{deliverOrder,getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping, savePayment, createOrder,
+     getOrder, payOrder, getMyOrders, signOut, listOrders}

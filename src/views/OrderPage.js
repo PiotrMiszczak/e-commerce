@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PayPalButton } from 'react-paypal-button-v2';
 import { useHistory } from "react-router-dom";
 import whisky from "../images/whisky.jpg";
-import { getOrder, ORDER_PAY_RESET, payOrder } from "../actions/actions";
+import { getOrder, ORDER_PAY_RESET, payOrder, deliverOrder } from "../actions/actions"; // TODO
 import Axios from "axios";
 
 function OrderPage(props) {
@@ -18,12 +18,18 @@ function OrderPage(props) {
   const {error:errorPay, success:succesPay, loading:loadingPay } = useSelector(
     (state) => state.orderPay
   );
+  const {error:errorDeliver, success:succesDeliver, loading:loadingDeliver } = useSelector(
+    (state) => state.orderDeliver
+  );
   const { _id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
 function paymentHandler(){
   dispatch(payOrder(_id))
+}
+function deliveryHandler(){
+  dispatch(deliverOrder(_id)) // TODO
 }
 
   if (!userInfo) {
@@ -49,13 +55,13 @@ useEffect(()=>{
 },[paypalSdk])
 
   useEffect(()=>{  
-    if(!order || succesPay || order && order._id!=_id){
+    if(!order || succesPay || succesDeliver || order && order._id!=_id){
       dispatch(getOrder(_id))
       
     }
 
       
-  },[succesPay]
+  },[succesPay, succesDeliver]
   )
 
   const loader = loading ? <div className="loader"></div> : null;
@@ -124,6 +130,7 @@ useEffect(()=>{
           paypalSdk.loading ? 
           <p>...Loading Paypal</p> :
            <PayPalButton onSuccess={paymentHandler} amount={order.totalPrice}></PayPalButton> : null}
+           {order.isPaid && !order.isDelivered && userInfo.isAdmin && <button onClick={deliveryHandler} className="summary__button">Deliver order</button>}
         </div>
       </div>
     </div>

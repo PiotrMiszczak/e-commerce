@@ -50,8 +50,11 @@ item && <animated.div key={key} style={props} className="navigation__menu">
 </button> 
 </div>
 <ul>
-            <li><Link style={{'text-decoration':'none'}} to={'/myorders'}>My orders</Link></li>
-            <li><span onClick={signOutHandler}>Sign out</span></li>
+            <li><Link onClick={()=>setShowMenu(false)} className="navigation__menu-option" to={'/myorders'}>My orders</Link></li>
+            {userInfo && userInfo.isAdmin && <li><Link onClick={()=>setShowMenu(false)} className="navigation__menu-option" to={'/products'}>Manage products</Link></li>}
+            {userInfo && userInfo.isAdmin && <li><Link onClick={()=>setShowMenu(false)} className="navigation__menu-option" to={'/orders'}>Manage orders</Link></li>}
+
+            <li><span className="navigation__menu-option" onClick={signOutHandler}>Sign out</span></li>
         </ul>
 </animated.div>
 )}

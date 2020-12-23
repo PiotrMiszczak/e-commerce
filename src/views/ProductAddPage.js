@@ -27,6 +27,10 @@ function ProductAdd(){
     const dispatch = useDispatch()
  
     let history = useHistory();
+
+    if(!userInfo || !userInfo.isAdmin){
+        history.push('/')
+    }
     
     useEffect(()=>{
 
