@@ -28,7 +28,7 @@ useEffect(()=>{
     ,[])
 
 function handleCheckout(){
-    if(userInfo || data){
+    if(userInfo){
         history.push('/shipping')
     }
     else{

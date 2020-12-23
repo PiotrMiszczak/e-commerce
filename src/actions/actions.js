@@ -20,7 +20,22 @@ export const SIGNIN_SUCCES = 'SIGNIN_SUCCEED'
 export const SIGNIN_FAILED = 'SIGNIN_FAILED'
 export const CART_SHIPPING = 'CART_SHIPPING'
 export const CART_PAYMENT = 'CART_PAYMENT'
-
+export const CART_EMPTY = 'CART_EMPTY'
+export const ORDER_SAVE_ERROR = 'ORDER_SAVE_ERROR'
+export const ORDER_SAVE_SUCCES = 'ORDER_SAVE_SUCCES'
+export const ORDER_SAVE_REQUEST = 'ORDER_SAVE_REQUEST'
+export const ORDER_RESET = 'ORDER_RESET'
+export const ORDER_DETAILS_ERROR = 'ORDER_DETAILS_ERROR'
+export const ORDER_DETAILS_SUCCES = 'ORDER_DETAILS_SUCCES'
+export const ORDER_DETAILS_REQUEST = 'ORDER_DETAILS_REQUEST'
+export const ORDER_PAY_ERROR = 'ORDER_PAY_ERROR'
+export const ORDER_PAY_SUCCES = 'ORDER_PAY_SUCCES'
+export const ORDER_PAY_REQUEST = 'ORDER_PAY_REQUEST'
+export const ORDER_PAY_RESET = 'ORDER_PAY_RESET'
+export const MYORDERS_ERROR = 'MYORDERS_ERROR'
+export const MYORDERS_REQUEST = 'MYORDERS_REQUEST'
+export const MYORDERS_SUCCES = 'MYORDERS_SUCCES'
+export const SIGN_OUT = 'SIGN_OUT'
 
 
 const getRequest = () => async (dispatch) =>{
@@ -76,30 +91,36 @@ const removeItem = (_id) => (dispatch, getState) => {
 Cookie.set('cartItems', JSON.stringify(cartItems))
 }
 
-const signIn = (password, email) => async (dispatch) => {
+const signIn = (password, email) => async (dispatch, getState) => {
     
     try{
     dispatch({type:SIGNIN_REQUEST})
     const userData = await axios.post('/api/users/signin',{password, email})
     dispatch({type:SIGNIN_SUCCES, payload:userData.data})
 
-   
-Cookie.set('userData', JSON.stringify(userData))
+    const {userData:{userInfo}} = getState()
+Cookie.set('userInfo', JSON.stringify(userInfo))
 }
 catch(err){
     dispatch({type:SIGNIN_FAILED, payload:err.message})
 
 }}
 
-const register = (name, password, email) => async (dispatch) => {
+const signOut = () => (dispatch) => {
+dispatch({type:SIGN_OUT}) 
+Cookie.remove('userInfo')
+}
+
+
+const register = (name, password, email) => async (dispatch, getState) => {
     
     try{
     dispatch({type:SIGNIN_REQUEST})
     const userData = await axios.post('/api/users/register',{name, password, email})
     dispatch({type:SIGNIN_SUCCES, payload:userData.data})
 
-   
-Cookie.set('userData', JSON.stringify(userData))
+    const {userData:{userInfo}} = getState()
+    Cookie.set('userInfo', JSON.stringify(userInfo))
 }
 catch(err){
     dispatch({type:SIGNIN_FAILED})
@@ -109,12 +130,12 @@ catch(err){
 const addProduct = (product) => async (dispatch, getState) =>{
     try{
     dispatch({type: PRODUCT_SAVE_REQEST})
-    const {userData:{data}}=getState() // userdata:userdata ????
+    const {userData:{userInfo}}=getState() // userdata:userdata ????
     if(!product._id){
-    const newProduct = await axios.post('/api/products/', product, {headers:{Authorization:`bearer ${data.token}`}})
+    const newProduct = await axios.post('/api/products/', product, {headers:{Authorization:`bearer ${userInfo.token}`}})
     dispatch({type: PRODUCT_SAVE_SUCCES, payload:newProduct.data})}
     else{
-        const updatedProduct = await axios.put(`/api/products/${product._id}`, product, {headers:{Authorization:`bearer ${data.token}`}})
+        const updatedProduct = await axios.put(`/api/products/${product._id}`, product, {headers:{Authorization:`bearer ${userInfo.token}`}})
         dispatch({type: PRODUCT_SAVE_SUCCES, payload:updatedProduct.data})
     }
     }
@@ -127,8 +148,8 @@ const addProduct = (product) => async (dispatch, getState) =>{
 const deleteProduct = (product) => async (dispatch, getState) =>{
     try{
     dispatch({type: PRODUCT_DELETE_REQEST})
-    const {userData:{data}}=getState() // userdata:userdata ????
-    const deletedProduct = await axios.delete(`/api/products/${product._id}`, {headers:{Authorization:`bearer ${data.token}`}})
+    const {userData:{userInfo}}=getState() 
+    const deletedProduct = await axios.delete(`/api/products/${product._id}`, {headers:{Authorization:`bearer ${userInfo.token}`}})
     dispatch({type: PRODUCT_DELETE_SUCCES, payload:deletedProduct.data})
     }
     catch(error){
@@ -144,4 +165,59 @@ const saveShipping = (data) => async (dispatch) =>{
 const savePayment = (data) => async (dispatch) =>{
     dispatch({type: CART_PAYMENT, payload:data})
 }
- export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping, savePayment}
+
+const createOrder = (order) => async (dispatch, getState) =>{
+    try{
+    dispatch({type: ORDER_SAVE_REQUEST})
+    const {userData:{userInfo}}=getState() 
+    const {data} = await axios.post(`/api/orders`,order, {headers:{Authorization:`bearer ${userInfo.token}`}})
+    dispatch({type: ORDER_SAVE_SUCCES, payload:data.data})
+    dispatch({type: CART_EMPTY})
+    Cookie.remove('cartItems')
+
+}
+
+catch(error){
+    dispatch({type: ORDER_SAVE_ERROR, payload:error.message})
+
+}}
+
+const getOrder = (_id) => async (dispatch) => {
+    try{
+        dispatch({type:ORDER_DETAILS_REQUEST})
+        const {data} = await axios.get(`api/orders/${_id}`)
+        dispatch({type:ORDER_DETAILS_SUCCES, payload:data})
+    }
+    catch(error){
+        dispatch({type:ORDER_DETAILS_ERROR, payload:error.message})
+    }
+
+}
+
+const payOrder = (_id) => async (dispatch, getState) => {
+    try{
+        dispatch({type:ORDER_PAY_REQUEST})
+        const {userData:{userInfo}}=getState() 
+        const {data} = await axios.put(`api/orders/pay/${_id}`,{}, {headers:{Authorization:`bearer ${userInfo.token}`}})
+        dispatch({type:ORDER_PAY_SUCCES, payload:data})
+    }
+    catch(error){
+        dispatch({type:ORDER_PAY_ERROR, payload:error.message})
+    }
+
+}
+
+const getMyOrders = () => async (dispatch, getState) => {
+    try{
+        dispatch({type:MYORDERS_REQUEST})
+        const {userData:{userInfo}}=getState() 
+        const {data} = await axios.get(`/api/orders/mine`,{headers:{Authorization:`bearer ${userInfo.token}`}})
+        dispatch({type:MYORDERS_SUCCES, payload:data})
+    }
+    catch(error){
+        dispatch({type:MYORDERS_ERROR, payload:error.message})
+    }
+
+}
+
+ export{ getRequest, getRequestItem, addItem, removeItem, signIn, register, addProduct, deleteProduct, saveShipping, savePayment, createOrder, getOrder, payOrder, getMyOrders, signOut}

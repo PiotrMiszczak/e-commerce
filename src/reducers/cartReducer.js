@@ -1,4 +1,4 @@
-import {ADD_ITEM_TO_CART, CART_SHIPPING, REMOVE_ITEM_FROM_CART, CART_PAYMENT} from '../actions/actions'
+import {ADD_ITEM_TO_CART, CART_SHIPPING, REMOVE_ITEM_FROM_CART, CART_PAYMENT, CART_EMPTY} from '../actions/actions'
 
 
 
@@ -34,7 +34,11 @@ case CART_SHIPPING:
 case CART_PAYMENT:
         return(
             {...state, payment:action.payload}
-        )        
+        )    
+case CART_EMPTY:
+        return(
+            {...state, cartItems:[]}
+        )       
             
            
                 

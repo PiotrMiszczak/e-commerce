@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, Link} from 'react-router-dom';
@@ -11,6 +12,7 @@ function ProductAdd(){
     const [name, setName] = useState('')
     const [_id, set_id] = useState('')
     const [avatar, setAvatar] = useState('')
+    const [upload, setUpload] = useState({loading:false, success:false, error:false});
     const [price, setPrice] = useState('')
     const [brand, setBrand] = useState('')
     const [category, setCategory] = useState('')
@@ -20,6 +22,7 @@ function ProductAdd(){
     const {loading:deleteLoading, success:deleteSuccess, error:deleteError} = useSelector(state=>state.deleteProduct)
     const products = useSelector(state => state.products)
     const {data} = products;
+    const {userInfo} = useSelector(state=>state.userData)
 
     const dispatch = useDispatch()
  
@@ -43,6 +46,24 @@ function ProductAdd(){
         e.preventDefault();
         dispatch(addProduct({_id:_id, name, avatar,price, brand, category, qty, description}))
         setCreator(false)
+    }
+
+    const uploadFileHandler = async (e)=>{
+        const image = e.target.files[0]
+        const uploadBodyData = new FormData();
+        uploadBodyData.append('image',image)
+try{
+    setUpload({loading:true, success:false, error:false})
+        const {data} = await Axios.post('/api/uploads/', uploadBodyData,
+         {headers:{Authorization:`bearer ${userInfo.token}`, 'Content-Type':'multipart/form-data'}})
+        if(data){
+            setUpload({loading:false, success:true, error:false})
+            setAvatar(data)
+        }
+}
+catch(error){
+setUpload({error:true, success:false, loading:false})
+}
     }
     function openCreator(product){
         if(_id){
@@ -122,6 +143,8 @@ function ProductAdd(){
                 <input required type="text" id="name" name="name" value={name} onChange={(e)=>setName(e.target.value)}></input>
                 <label for="avatar">Avatar: </label>
                 <input required type="text" id="avatar" name="avatar" value={avatar} onChange={(e)=>setAvatar(e.target.value)}></input>
+                <label for="file">Avatar file: </label>
+                <input required type="file" id="file" name="file" onChange={uploadFileHandler}></input>
                 <label for="price">Price: </label>
                 <input required type="number" id="price" name="price" value={price} onChange={(e)=>setPrice(e.target.value)}></input>
                 <label for="brand">Brand: </label>

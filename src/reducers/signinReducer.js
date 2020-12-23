@@ -1,4 +1,4 @@
-import {SIGNIN_FAILED, SIGNIN_REQUEST, SIGNIN_SUCCES} from '../actions/actions'
+import {SIGNIN_FAILED, SIGNIN_REQUEST, SIGNIN_SUCCES, SIGN_OUT} from '../actions/actions'
 
 function signinReducer(state = {}, action){
     switch(action.type){
@@ -14,6 +14,8 @@ function signinReducer(state = {}, action){
         return(
             {loading:false, userInfo:null, error:true}
         )
+        case SIGN_OUT:
+            return {}
         default:
             return state;
     }

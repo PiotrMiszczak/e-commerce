@@ -11,6 +11,7 @@ function Main(){
     error:false,
 })*/
 const products = useSelector(state => state.products)
+const {userInfo} = useSelector(state => state.userData)
 const {data, loading, error} = products;
 const dispatch = useDispatch();
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 
 import { faCoins, faTimes} from '@fortawesome/free-solid-svg-icons'
@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useHistory} from 'react-router-dom'
 import ProgressBar from '../components/ProgressBar'
 import whisky from '../images/whisky.jpg'
+import {createOrder, ORDER_RESET} from '../actions/actions'
 
 
 function SummaryPage(props){
-
-const {cartItems, shipping, payment} = useSelector(state=> state.cart);
+const cart = useSelector(state=> state.cart);
+const {cartItems, shipping, payment} = cart;
 const {userInfo} = useSelector(state=>state.userData)
-const {data} = useSelector(state=>state.userData)
+const {order, loading, succes, error} = useSelector(state=>state.createdOrder)
+
 const dispatch = useDispatch();
 const history = useHistory();
 
@@ -20,7 +22,7 @@ const itemsPrice =  cartItems.reduce((a,b)=>a+Number(b.qty)*b.price, 0);
 const deliveryPrice = itemsPrice>200 ? 0 : 20;
 const totalPrice = itemsPrice + deliveryPrice
 
- if(!data && !userInfo){
+ if(!userInfo){
     history.push('/signin')
 }
 else if(!shipping){
@@ -30,8 +32,17 @@ else if(!payment){
     history.push('/payment')
 }
 
+useEffect(()=>{
+    if(order){
+        history.push(`/orders/${order._id}`)
+        dispatch({type:ORDER_RESET})
+        
+    }
+},[order])
 
 function handleOrder(){
+    dispatch(createOrder({...cart, orderItems:cartItems, totalPrice,deliveryPrice}))
+    
  
 }
 
@@ -68,9 +79,9 @@ function handleOrder(){
        
         <h1>Order summary</h1>
         <p>Price: {itemsPrice}$</p>
-        <p>Delivery price: {deliveryPrice==0 ? 'free' : deliveryPrice + '$'}</p>
+        <p>Delivery price: {deliveryPrice==0 ? 'free' : deliveryPrice + '$(free for orders above 200$)'}</p>
 <span>Total: {totalPrice}$</span>
-<button className="summary__button">Place order</button>
+<button onClick={handleOrder} className="summary__button">Place order</button>
         </div>
             
         </div>

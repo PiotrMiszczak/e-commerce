@@ -9,7 +9,9 @@ import RegisterPage from './views/RegisterPage'
 import ProductAddPage from './views/ProductAddPage'
 import ShippingPage from './views/ShippingPage'
 import PaymentPage from './views/PaymentPage'
-import SummaryPage from './views/SummaryPage';
+import SummaryPage from './views/SummaryPage'
+import OrderPage from './views/OrderPage';
+import MyOrderPage from './views/MyOrdersPage'
 
 
 function App() {
@@ -44,6 +46,12 @@ function App() {
     </Route>
     <Route path='/summary'>
     <SummaryPage />
+    </Route>
+    <Route path='/orders/:_id'>
+    <OrderPage />
+    </Route>
+    <Route path='/myorders'>
+    <MyOrderPage />
     </Route>
     </Switch>
     <footer>Rigths reserved</footer>
