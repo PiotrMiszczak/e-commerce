@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Hedaer from './components/Header'
-import Main from './views/Main'
+import HomePage from './views/HomePage'
 import ProductPage from './views/ProductPage'
 import CartPage from './views/CartPage'
 import SinginPage from './views/SigninPage'
@@ -15,14 +15,16 @@ import MyOrderPage from './views/MyOrdersPage'
 import AllOrdersPage from './views/AllOrdersPage';
 
 
+
 function App() {
   return (
     <Router>
-    <div className="grid-container">
+    <div id="page-container">
+    <div id="content-wrap">
     <Hedaer />
     <Switch>
       <Route exact path='/'>
-      <Main />
+      <HomePage />
     </Route>
     <Route path='/signin'>
       <SinginPage />
@@ -58,7 +60,9 @@ function App() {
     <AllOrdersPage />
     </Route>
     </Switch>
-    <footer>Rigths reserved</footer>
+    </div>
+    
+    <footer id="footer">Rigths reserved</footer>
     </div>
     </Router>
   );

@@ -1,12 +1,16 @@
 import React from 'react';
 import Navigation from './Navigation';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function Header(){
     return(
         <header className="header">
-     <Link className="link" to="/"><h1>My Shop</h1></Link>
+            
+     <Link to="/"><FontAwesomeIcon className="link" icon={faHome} /></Link>
+     <h1>My Shop</h1>
       < Navigation/>
     </header>
     )
