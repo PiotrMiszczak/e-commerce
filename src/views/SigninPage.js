@@ -34,27 +34,28 @@ function SignIn(){
     }
 
     return(
-        
+        <div className="main">
         <div className="form__wrapper">
             <h1>Welcome to MyShop!</h1>
             {error ? <h2 style={{'color':'red'}}>Invalid E-mail or password</h2> : null}
             <form onSubmit={handleSignin} className="form">
                 <label for="email">E-mail: </label>
-                <input type="email" id="email" name="email" onChange={(e)=>setEmail(e.target.value)}></input>
+                <input required type="email" id="email" name="email" onChange={(e)=>setEmail(e.target.value)}></input>
                 
                 <label for="password">Password: </label>
-                <input type="password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)}></input>
+                <input required type="password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)}></input>
                 
-                <button type="submit">Sign in</button>
+                <button className="button-signin" type="submit">Sign in</button>
                 <h2>New here? Click below:</h2>
-                <Link to={redirect ? '/register?redirect=shipping' : '/register'}>
-                <button>Sign up</button>
+                <Link className="Link" to={redirect ? '/register?redirect=shipping' : '/register'}>
+                <button className="button-signin">Sign up</button>
                 </Link>
 
 
             </form>
 
 
+        </div>
         </div>
         
     

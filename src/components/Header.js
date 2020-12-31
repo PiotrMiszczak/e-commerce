@@ -9,7 +9,7 @@ function Header(){
     return(
         <header className="header">
             
-     <Link to="/"><FontAwesomeIcon className="link" icon={faHome} /></Link>
+     <Link to="/"><FontAwesomeIcon className="returnHome" icon={faHome} /></Link>
      <h1>My Shop</h1>
       < Navigation/>
     </header>

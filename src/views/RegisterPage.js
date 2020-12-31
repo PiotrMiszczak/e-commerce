@@ -37,7 +37,7 @@ function Register(){
     }
 
     return(
-        
+        <div className="main">
         <div className="form__wrapper">
             <h1>Welcome to MyShop!</h1>
             {passInvalid}
@@ -51,16 +51,16 @@ function Register(){
                 <label for="repassword">Retype password: </label>
                 <input required type="password" id="repassword" name="repassword" onChange={(e)=>setRePassword(e.target.value)}></input>
                 
-                <button type="submit">Register</button>
+                <button className="button-signin"type="submit">Register</button>
                 <h2>Already have an account? Click below:</h2>
-                <Link to={'/signin'}>
-                <button>Sign in</button>
+                <Link className="Link" to={'/signin'}>
+                <button className="button-signin">Sign in</button>
                 </Link>
 
 
             </form>
 
-
+            </div>
         </div>
         
     
