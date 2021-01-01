@@ -222,7 +222,7 @@ function CartPage(props) {
 
   return (
     <main className="main">
-     {items.length==0 ? <span className="cart__heading">You cart is empty, <Link to="/">go shopping</Link></span> : <span className="cart__heading">Shopping cart</span>}
+     {items.length==0 ? <span className="cart__heading">You cart is empty, <Link to="/">go shopping</Link></span> : <h2>Shopping cart</h2>}
       <div className="cart">
      
         <div className="cart__items">
@@ -284,7 +284,7 @@ function CartPage(props) {
           <div className="cart__actions">
             <h2>Items: {items.reduce((a, b) => a + Number(b.qty), 0)}</h2>
             <h2>
-              Price: {items.reduce((a, b) => a + Number(b.qty) * b.price, 0)}
+              Price: {items.reduce((a, b) => a + Number(b.qty) * b.price, 0)} $
             </h2>
             <button className="button-secondary" onClick={handleCheckout}>
               Go to checkout

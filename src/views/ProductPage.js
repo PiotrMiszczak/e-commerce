@@ -15,13 +15,7 @@ function Product(props){
     const dispatch = useDispatch();
     
     
-    /*const [product, setProduct] = useState({
-        loading:true,
-        data:null,
-        error:false,
-        numOfRew:0,
-        
-    })*/
+
 
 
 
@@ -29,20 +23,7 @@ function Product(props){
     useEffect(()=>{
 
         dispatch(getRequestItem(_id))
-        /*axios.get(`https://5f799e65e402340016f932a1.mockapi.io/commerce/${id}`)
-        .then(resp => setProduct({
-            loading:false,
-            data: resp.data,
-            error:false,
-            numOfRew:0,
-        }))
-
-      .catch(()=>setProduct({
-        loading:false,
-        data: null,
-        error:true,
-        numOfRew:0,
-    }))*/
+        
     }
         
         
@@ -59,14 +40,17 @@ function Product(props){
         }
         if(data){
             content = 
+            <main className="main">
             <div className="product__page">
+            <div className="product__page-info">
             <img className="product__page-image" src={data.avatar}></img>
-            <div className="product__info">
+            <div className="product__page-description">
                 <h1>{data.name}</h1>
             <p><StarRating /></p> 
 <p><FontAwesomeIcon icon={faCoins} /> {data.price} $</p>
 <p>Description:</p>
 <p>lorem ipsum bla bla bla lorem ipsum bla bla bla lorem ipsum bla bla</p>
+            </div>
             </div>
             <div className="product__actions-wrapper">
             <div className="product__actions">
@@ -86,6 +70,7 @@ function Product(props){
         </div>
         </div>
             </div>
+            </main>
         }
         
         

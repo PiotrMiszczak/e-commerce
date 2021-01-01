@@ -13,7 +13,7 @@ useEffect(()=>{
     dispatch(getMyOrders())
 },[])
     return(
-        <div>
+        <main className="main main-myorders">
              {loading ? <div className="loader"></div> : orders ?
  <table className="admin__table">
             <thead>
@@ -32,8 +32,8 @@ useEffect(()=>{
                             <td>{order._id}</td>
                             <td>{order.totalPrice}</td>
                             <td>{!order.isPaid ? 'Not paid':`Paid at ${order.paidAt.slice(0,10)}`}</td>
-                            <td>{!order.isDelivered && 'Not delivered'}</td>
-                            <td><Link to={`/orders/${order._id}`}><button>Details</button></Link></td>
+                            <td>{!order.isDelivered ? 'Not delivered' : 'Delivered'}</td>
+                            <td><Link to={`/orders/${order._id}`}>See details</Link></td>
                            
                         </tr>
 
@@ -41,7 +41,7 @@ useEffect(()=>{
                 })}
             </tbody>
             </table> : <h1>Looks like you do not have any orders</h1>}
-        </div>
+        </main>
     )
 }
 

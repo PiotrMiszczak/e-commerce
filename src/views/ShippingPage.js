@@ -23,7 +23,7 @@ function ShippingPage(props){
     }
 
     return(
-        <div>
+        <main className="main">
         <ProgressBar step1 step2 />
         <div className="form__wrapper">
             <h1>Shipping info</h1>
@@ -34,10 +34,10 @@ function ShippingPage(props){
                 <input required type="text" id="postalCode" name="postalCode" onChange={(e)=>setCode(e.target.value)}></input>
                 <label for="city">City: </label>
                 <input required type="text" id="city" name="city" onChange={(e)=>setCity(e.target.value)}></input>
-                <label for="country">Retype password: </label>
+                <label for="country">Country: </label>
                 <input required type="text" id="country" name="country" onChange={(e)=>setCountry(e.target.value)}></input>
                 
-                <button type="submit">Next</button>
+                <button className="button-secondary" type="submit">Next</button>
 
 
 
@@ -45,7 +45,7 @@ function ShippingPage(props){
 
 
         </div>
-        </div>
+        </main>
         
     
     )

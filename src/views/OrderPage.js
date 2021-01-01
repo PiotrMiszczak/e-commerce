@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { faCoins, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { PayPalButton } from 'react-paypal-button-v2';
 import { useHistory } from "react-router-dom";
 import whisky from "../images/whisky.jpg";
@@ -66,9 +65,9 @@ useEffect(()=>{
 
   const loader = loading ? <div className="loader"></div> : null;
   let content = order ? (
-    <div>
-      <div className="summary">
-        <div className="summary__info">
+    <main className="main">
+      <div className="summary summary-final">
+        <div className="summary__info summary__info-final">
           <div className="summary__shipping">
             <h2>Shipping</h2>
             <p>
@@ -106,7 +105,7 @@ useEffect(()=>{
                 <div className="cart__item">
                   <img
                     style={{ float: "left", "margin-right": "1rem" }}
-                    src={whisky}
+                    src={item.avatar}
                   />
                   <h2>{item.name}</h2>
                   <p>Price: {item.price}</p>
@@ -116,7 +115,7 @@ useEffect(()=>{
             })}
           </div>
         </div>
-        <div className="summary__actions">
+        <div className="summary__actions summary__actions-final">
           <h1>Order summary</h1>
 
           <p>
@@ -129,11 +128,12 @@ useEffect(()=>{
           {!order.isPaid ?
           paypalSdk.loading ? 
           <p>...Loading Paypal</p> :
-           <PayPalButton onSuccess={paymentHandler} amount={order.totalPrice}></PayPalButton> : null}
+          <div className="paypal-wrapper">
+           <PayPalButton onSuccess={paymentHandler} amount={order.totalPrice}></PayPalButton> </div>: null}
            {order.isPaid && !order.isDelivered && userInfo.isAdmin && <button onClick={deliveryHandler} className="summary__button">Deliver order</button>}
         </div>
       </div>
-    </div>
+    </main>
   ) : null;
   const errorWarning = error ? <h1>{error}</h1> : null;
   return (

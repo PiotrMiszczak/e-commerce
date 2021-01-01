@@ -47,7 +47,7 @@ function handleOrder(){
 }
 
     return(
-       <div>
+       <main className="main">
             < ProgressBar step1 step2 step3 step4 />
             <div className="summary">
                 <div className="summary__info">
@@ -64,7 +64,7 @@ function handleOrder(){
             {cartItems.map((item)=>{
                 return(
                     <div className="cart__item">
-                <img style={{'float':'left','margin-right':'1rem'}} src={whisky} />
+                <img style={{'float':'left','margin-right':'1rem'}} src={item.avatar} />
                 <h2>{item.name}</h2>
                 <p>Quantity: {item.qty}</p>
                 
@@ -85,7 +85,7 @@ function handleOrder(){
         </div>
             
         </div>
-        </div>
+        </main>
     )
 }
 
