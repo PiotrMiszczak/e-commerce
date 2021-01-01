@@ -88,7 +88,7 @@ body {
       animation-duration: 1.5s;
       animation-timing-function: ease-out; }
 
-.button-signin {
+.button-secondary {
   font-size: 12px;
   text-decoration: none;
   text-transform: uppercase;
@@ -99,8 +99,11 @@ body {
   background: #c9c0c0;
   transition: all 0.1s ease-out;
   color: #4e4a4a;
-  background-color: white; }
-  .button-signin:hover {
+  background-color: white;
+  transition: all 0.2s; }
+  .button-secondary:hover {
+    transform: scale(1.05);
+    color: #2fff36;
     cursor: pointer; }
 
 .button-primary, .button-primary:visited {
@@ -124,6 +127,13 @@ body {
   .button-primary:active, .button-primary:visited:active {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.311);
     transform: translateY(1px); }
+
+.image-svg {
+  max-width: 500px;
+  min-width: 280px;
+  width: 100%;
+  max-height: 400px;
+  margin-top: 2rem; }
 
 .returnHome {
   font-size: 2rem;
@@ -244,7 +254,8 @@ body {
     border-radius: 50%;
     position: absolute;
     top: 0%;
-    left: 50%; }
+    left: 50%;
+    padding-bottom: 15px; }
   .navigation__button:hover {
     cursor: pointer; }
 
@@ -334,6 +345,9 @@ body {
     border: 1px solid grey;
     width: 30%;
     padding: 1rem; }
+  .cart__heading {
+    margin: 2rem;
+    font-size: 2rem; }
 
 .form {
   width: 100%; }

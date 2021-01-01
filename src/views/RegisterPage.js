@@ -51,10 +51,10 @@ function Register(){
                 <label for="repassword">Retype password: </label>
                 <input required type="password" id="repassword" name="repassword" onChange={(e)=>setRePassword(e.target.value)}></input>
                 
-                <button className="button-signin"type="submit">Register</button>
+                <button className="button-secondary"type="submit">Register</button>
                 <h2>Already have an account? Click below:</h2>
                 <Link className="Link" to={'/signin'}>
-                <button className="button-signin">Sign in</button>
+                <button className="button-secondary">Sign in</button>
                 </Link>
 
 

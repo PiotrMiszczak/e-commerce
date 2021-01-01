@@ -36,7 +36,7 @@ function SignIn(){
     return(
         <div className="main">
         <div className="form__wrapper">
-            <h1>Welcome to MyShop!</h1>
+            <h2>Welcome to MyShop!</h2>
             {error ? <h2 style={{'color':'red'}}>Invalid E-mail or password</h2> : null}
             <form onSubmit={handleSignin} className="form">
                 <label for="email">E-mail: </label>
@@ -45,10 +45,10 @@ function SignIn(){
                 <label for="password">Password: </label>
                 <input required type="password" id="password" name="password" onChange={(e)=>setPassword(e.target.value)}></input>
                 
-                <button className="button-signin" type="submit">Sign in</button>
+                <button className="button-secondary" type="submit">Sign in</button>
                 <h2>New here? Click below:</h2>
                 <Link className="Link" to={redirect ? '/register?redirect=shipping' : '/register'}>
-                <button className="button-signin">Sign up</button>
+                <button className="button-secondary">Sign up</button>
                 </Link>
 
 
