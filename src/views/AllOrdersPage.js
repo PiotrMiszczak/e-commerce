@@ -19,7 +19,7 @@ useEffect(()=>{
     dispatch(listOrders())
 },[])
     return(
-        <div>
+        <main className="main">
             {loading ? <div className="loader"></div> : orders ?
  <table className="admin__table">
             <thead>
@@ -47,7 +47,7 @@ useEffect(()=>{
                 })}
             </tbody>
             </table> : <h1>Looks like you do not have any orders</h1>}
-        </div>
+        </main>
     )
 }
 

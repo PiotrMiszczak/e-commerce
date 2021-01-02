@@ -100,7 +100,7 @@ setUpload({error:true, success:false, loading:false})
     }
 
     return(
-        <div>
+        <main className="main">
         <table className="admin__table">
             <thead>
                 <tr>
@@ -169,7 +169,7 @@ setUpload({error:true, success:false, loading:false})
 
 
         </div>}
-        </div>
+        </main>
         
     
     )

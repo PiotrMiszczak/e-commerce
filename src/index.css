@@ -58,7 +58,7 @@ body {
 
 .subheader {
   height: 80vh;
-  background-image: linear-gradient(to right, rgba(94, 139, 186, 0.804), rgba(18, 52, 89, 0.804)), url(./images/jeans.jpg);
+  background-image: linear-gradient(to left, rgba(94, 139, 186, 0.804), rgba(18, 52, 89, 0.804)), url(./images/jeans.jpg);
   /*NOWE*/
   background-size: cover;
   background-position: top;
@@ -171,7 +171,7 @@ body {
     .main__product img {
       display: block;
       margin: 0 auto;
-      max-width: 250px;
+      max-width: 80%;
       margin-top: 5px; }
     .main__product-wrapper {
       margin-top: 6rem;
@@ -344,23 +344,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start; }
-  @media (max-width: 680px) {
+  @media (max-width: 800px) {
     .cart {
-      display: block; } }
+      display: block;
+      margin: 0 auto; } }
   .cart img {
     display: block;
     margin: 0 auto;
     max-width: 250px;
-    min-width: 170px;
     width: 100%;
     margin-top: 5px; }
+    @media (max-width: 550px) {
+      .cart img {
+        max-width: 150px; } }
   .cart__items {
-    width: 60%;
-    min-width: 350px; }
-    @media (max-width: 680px) {
+    width: 60%; }
+    @media (max-width: 800px) {
       .cart__items {
         width: 100%;
-        margin-bottom: 4rem; } }
+        margin-bottom: 4rem;
+        min-width: 100px; } }
   .cart__item {
     border-top: 1px solid grey;
     border-collapse: collapse;
@@ -374,7 +377,7 @@ body {
     width: 30%;
     padding: 1rem;
     background-color: #f5efef; }
-    @media (max-width: 680px) {
+    @media (max-width: 800px) {
       .cart__actions {
         width: 100%;
         margin: 0 auto; } }
@@ -502,6 +505,9 @@ input[type=radio] {
     margin: 0 auto;
     max-width: 250px;
     margin-top: 5px; }
+    @media (max-width: 900px) {
+      .summary img {
+        max-width: 150px; } }
   @media (max-width: 700px) {
     .summary {
       display: block; } }

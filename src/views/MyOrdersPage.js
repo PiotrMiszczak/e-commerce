@@ -19,7 +19,7 @@ useEffect(()=>{
             <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Order price</th>
+                    <th>Order price($)</th>
                     <th>Order payment status</th>
                     <th>Order delivery status</th>
                     <th>Details</th>
