@@ -5,7 +5,7 @@ import { faCoins, faTimes} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useHistory} from 'react-router-dom'
 import ProgressBar from '../components/ProgressBar'
-import whisky from '../images/whisky.jpg'
+
 import {createOrder, ORDER_RESET} from '../actions/actions'
 
 

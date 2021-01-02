@@ -381,9 +381,6 @@ body {
       .cart__actions {
         width: 100%;
         margin: 0 auto; } }
-  .cart__heading {
-    margin: 2rem;
-    font-size: 2rem; }
 
 .form {
   width: 100%; }
@@ -570,6 +567,11 @@ input[type=radio] {
     background-color: rgba(60, 182, 60, 0.5); }
   .order-status-red {
     background-color: rgba(230, 46, 46, 0.5); }
+
+.noitems-warning {
+  margin-top: 1rem;
+  font-size: 2rem;
+  display: block; }
 
 @keyframes moveFromLeft {
   0% {

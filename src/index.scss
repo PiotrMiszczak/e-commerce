@@ -495,12 +495,7 @@ margin-right: 3rem;
     }
 
   }
-  &__heading{
-    margin:2rem;
-    font-size: 2rem;
-   
-    
-  }
+  
 }
 
 .form{
@@ -737,6 +732,13 @@ margin-top:2rem;
     &-red{
       background-color: rgba(230, 46, 46, 0.5);
     }
+  }
+
+  .noitems-warning{
+    margin-top: 1rem;
+      font-size: 2rem;
+      display: block;
+     
   }
 
   @keyframes moveFromLeft{

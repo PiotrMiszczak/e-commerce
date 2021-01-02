@@ -5,7 +5,7 @@ import { faCoins, faPlusCircle} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {useTransition, animated} from 'react-spring';
 import {Link} from 'react-router-dom'
-import whisky from '../images/whisky.jpg'
+
 
 function ProductCard(props){
 const dispatch=useDispatch();

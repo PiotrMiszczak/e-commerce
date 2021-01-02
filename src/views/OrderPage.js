@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { PayPalButton } from 'react-paypal-button-v2';
 import { useHistory } from "react-router-dom";
-import whisky from "../images/whisky.jpg";
+
 import { getOrder, ORDER_PAY_RESET, payOrder, deliverOrder } from "../actions/actions"; // TODO
 import Axios from "axios";
 

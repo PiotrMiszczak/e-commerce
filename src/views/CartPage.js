@@ -222,11 +222,11 @@ function CartPage(props) {
 
   return (
     <main className="main">
-     {items.length==0 ? <span className="cart__heading">You cart is empty, <Link to="/">go shopping</Link></span> : <h2>Shopping cart</h2>}
+    {items.length==0 ? <div>{emptyCartSvg}<span className="noitems-warning">You cart is empty, <Link to="/">go shopping</Link></span></div> : <h2>Shopping cart</h2>}
       <div className="cart">
-     
+      
         <div className="cart__items">
-          {items.length != 0 ? 
+          { 
             items.map((item) => {
               return (
                 <div className="cart__item">
@@ -276,8 +276,7 @@ function CartPage(props) {
                 </div>
               );
             })
-           : 
-            emptyCartSvg
+           
           }
         </div>
         {items.length != 0 ? (
